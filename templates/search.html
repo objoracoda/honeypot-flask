@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Поиск товаров (Уязвим для SQLi)</h2>
+<form method="POST">
+    <input type="text" name="query" value="{{ query if query else '' }}" placeholder="Введите название товара...">
+    <button type="submit">Искать</button>
+</form>
+
+{% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %}
+
+{% if results %}
+    <h3>Результаты:</h3>
+    <ul>
+    {% for row in results %}
+        <!-- row[0] -> name, row[1] -> price -->
+        <li>Товар: {{ row[0] }}, цена: {{ row[1] }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

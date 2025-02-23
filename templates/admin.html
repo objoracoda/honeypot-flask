@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title if title else "Honeypot Flask" }}</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Главная</a> |
+        <a href="{{ url_for('search') }}">Поиск</a> |
+        <a href="{{ url_for('login') }}">Логин</a> |
+        {% if session.is_admin %}
+            <a href="{{ url_for('admin_page') }}">Админ</a>
+        {% endif %}
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
